@@ -57,19 +57,19 @@ function App() {
             <h3>Preços do {data.name}</h3>
             <ul>
               <li>
-                USD: {data.market_data.current_price.usd}
+                USD: {data.market_data.current_price.usd.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
               </li>
 
               <li>
-                BRL: {data.market_data.current_price.brl}
+                BRL: {data.market_data.current_price.brl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </li>
 
               <li>
-                EUR: {data.market_data.current_price.eur}
+                EUR: {data.market_data.current_price.eur.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
               </li>
 
               <li>
-                CNY: {data.market_data.current_price.cny}
+                CNY: {data.market_data.current_price.cny.toLocaleString('zh-MO', { style: 'currency', currency: 'MOP' })}
               </li>
             </ul>
           </div>
