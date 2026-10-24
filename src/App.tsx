@@ -1,5 +1,7 @@
 import type { BitcoinHistoryResponce } from "./types/types"
 import { useState, useEffect } from "react"
+import "./App.css";
+import { CryptoCard } from "./components/CryptoCard/CryptoCard";
 
 function App() {
   const [data, setData] = useState<BitcoinHistoryResponce | null>(null)
@@ -37,45 +39,14 @@ function App() {
 
   
 
-  if (loading) return <p>Carregando dados...</p>
-  if (error) return <p style={{ color:'red' }}>Erro: {error}</p>
+  if (loading) return <p className="loading">Carregando dados...</p>
+  if (error) return <p className="error">Erro: {error}</p>
   
   return (
-    <>
-      <div>
-        <h1>Histórico do Bitcoin</h1>
-
-        {data && (
-          <div>
-            <img src={data.image.small} alt={data.name} width={48} />
-            <h2>{data.name} ({data.symbol.toUpperCase()})</h2>
-          </div>
-        )}
-
-        {data && (
-          <div>
-            <h3>Preços do {data.name}</h3>
-            <ul>
-              <li>
-                USD: {data.market_data.current_price.usd.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-              </li>
-
-              <li>
-                BRL: {data.market_data.current_price.brl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-              </li>
-
-              <li>
-                EUR: {data.market_data.current_price.eur.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
-              </li>
-
-              <li>
-                CNY: {data.market_data.current_price.cny.toLocaleString('zh-MO', { style: 'currency', currency: 'MOP' })}
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>    
-    </>
+    <div>
+      <h1>Histórico do Bitcoin</h1>
+      {data && < CryptoCard crypto={data} />} 
+    </div>
   )
 }
 
